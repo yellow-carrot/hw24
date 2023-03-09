@@ -1,6 +1,8 @@
+from typing import Any, Dict
+
 from marshmallow import Schema, fields, ValidationError, validates_schema
 
-VALID_CMD = ('filter', 'unique', 'map', 'limit', 'sort')
+VALID_CMD = ('filter', 'unique', 'map', 'limit', 'sort', 'regex')
 
 
 class RequestSchema(Schema):
@@ -8,7 +10,7 @@ class RequestSchema(Schema):
     value = fields.Str(required=True)
 
     @validates_schema()
-    def check_valid_cmd(self, value, *args, **kwargs):
+    def check_valid_cmd(self, value: Dict, *args: Any, **kwargs: Any) -> None:
         if value['cmd'] not in VALID_CMD:
             raise ValidationError('cmd not valid')
 

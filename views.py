@@ -1,4 +1,6 @@
-from flask import Blueprint, request, jsonify
+from typing import Tuple, Union
+
+from flask import Blueprint, request, jsonify, Response
 from marshmallow import ValidationError
 
 from models import BatchRequestSchema
@@ -6,11 +8,9 @@ from utils import build_query
 
 main_bp = Blueprint('main', __name__)
 
-# FILENAME = 'data/apache_logs.txt'
-
 
 @main_bp.route('/perform_query', methods=['POST'])
-def perform_query():
+def perform_query() -> Union[Response, Tuple[Response, int]]:
     data = request.json
     try:
         valid_data = BatchRequestSchema().load(data)
