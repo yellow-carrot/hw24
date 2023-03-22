@@ -3,6 +3,7 @@ from typing import Tuple, Union
 from flask import Blueprint, request, jsonify, Response
 from marshmallow import ValidationError
 
+from db import db
 from models import BatchRequestSchema
 from utils import build_query
 
@@ -31,6 +32,16 @@ def perform_query() -> Union[Response, Tuple[Response, int]]:
     return jsonify(result)
 
 
-@test_bp.route('/')
-def test():
+@test_bp.route('/', methods=['GET'])
+def test_app():
     return 'it works'
+
+
+@test_bp.route('/test_db', methods=['GET'])
+def test_db():
+    result = db.session.execute(
+        '''
+        SELECT 1;
+        '''
+    ).scalar()
+    return jsonify({'result': result})
