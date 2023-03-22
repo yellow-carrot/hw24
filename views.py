@@ -7,6 +7,7 @@ from models import BatchRequestSchema
 from utils import build_query
 
 main_bp = Blueprint('main', __name__)
+test_bp = Blueprint('test', __name__)
 
 
 @main_bp.route('/perform_query', methods=['POST'])
@@ -28,3 +29,8 @@ def perform_query() -> Union[Response, Tuple[Response, int]]:
         )
 
     return jsonify(result)
+
+
+@test_bp.route('/')
+def test():
+    return 'it works'
