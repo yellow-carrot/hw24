@@ -2,6 +2,7 @@ from typing import Tuple, Union
 
 from flask import Blueprint, request, jsonify, Response
 from marshmallow import ValidationError
+from sqlalchemy import text
 
 from db import db
 from models import BatchRequestSchema
