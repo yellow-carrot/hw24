@@ -35,7 +35,6 @@ jobs:
           source: "deploy/docker-compose.yaml"
           target: "deploy"
           strip_components: 1
-
 #      - name: run
 #        uses: appleboy/ssh-action@master
 #        with:
