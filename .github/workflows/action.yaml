@@ -44,6 +44,3 @@ jobs:
           script: |
             cd deploy
             docker-compose up -d
-
-# -d приложение в режиме демона.
-
