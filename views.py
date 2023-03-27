@@ -41,7 +41,7 @@ def test_app():
 def test_db():
     result = db.session.execute(
         '''
-        SELECT 123;
+        SELECT 12345;
         '''
     ).scalar()
     return jsonify({'result': result})
