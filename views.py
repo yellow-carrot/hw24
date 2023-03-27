@@ -34,14 +34,14 @@ def perform_query() -> Union[Response, Tuple[Response, int]]:
 
 @test_bp.route('/', methods=['GET'])
 def test_app():
-    return 'it works'
+    return 'it works!'
 
 
 @test_bp.route('/test_db', methods=['GET'])
 def test_db():
     result = db.session.execute(
         '''
-        SELECT 1;
+        SELECT 123;
         '''
     ).scalar()
     return jsonify({'result': result})
